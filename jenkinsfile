@@ -1,0 +1,31 @@
+pipeline {
+    agent any
+  stages {
+	stage ('checkout')
+ 	{
+		steps {
+                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/yarli9951/GITDEMO.git']]])
+            }
+	}
+	stage ('build')
+	{
+		steps {
+		echo 'This is build stage'
+		}
+	}
+	stage ('Non-regression')
+	{
+		steps {
+		echo 'This is build stage'
+		}
+	}
+         stage ('deploy')
+	{
+		steps {
+		echo 'This is build stage'
+		}
+	}
+
+
+    }
+}
