@@ -10,7 +10,13 @@ pipeline {
 	stage ('build')
 	{
 		steps {
-		echo 'This is build stage'
+		script {
+		
+		sh '''
+		      cd /var/lib/jenkins/workspace/Maven-pipleine/my-app/
+              mvn package 
+			'''
+		}
 		}
 	}
 	stage ('Non-regression')
