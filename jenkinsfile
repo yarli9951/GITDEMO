@@ -1,5 +1,9 @@
 pipeline {
     agent any
+
+environment { 
+        PATH = $PATH:getterraform()
+    }
   stages {
 	stage ('checkout')
  	{
@@ -31,7 +35,24 @@ pipeline {
 		echo 'This is build stage'
 		}
 	}
-
+stage ('Terraform')
+{
+	steps
+	{
+	script 
+	{
+		sh 'terraform init'
+	}
+	
+}
+}
 
     }
+}
+
+
+def getterraform(){
+
+   def getpath=tool name: 'terraform', type: 'terraform
+
 }
