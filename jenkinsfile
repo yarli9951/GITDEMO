@@ -2,7 +2,7 @@ pipeline {
     agent any
 
 environment { 
-        PATH+EXTRA = '$PATH:getterraform()'
+        PATH = "${PATH}:${getterraform()}"
     }
   stages {
 	stage ('checkout')
@@ -54,5 +54,5 @@ stage ('Terraform')
 def getterraform(){
 
    def getpath=tool name: 'terraform', type: 'terraform'
-
+   return getpath
 }
