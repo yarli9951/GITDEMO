@@ -2,7 +2,7 @@ pipeline {
     agent any
 
 environment { 
-        PATH = $PATH:getterraform()
+        PATH = '$PATH:getterraform()'
     }
   stages {
 	stage ('checkout')
