@@ -53,6 +53,6 @@ stage ('Terraform')
 
 def getterraform(){
 
-   def getpath=tool name: 'terraform', type: 'terraform'
+   def getpath=tool name: '', type: 'terraform'
    return getpath
 }
