@@ -42,7 +42,7 @@ stage ('Terraform')
 	{
 	script 
 	{
-		sh 'terraform init'
+		sh 'cd /var/lib/jenkins/workspace/Terraform/; terraform init'
 	}
 	
 }
