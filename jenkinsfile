@@ -17,7 +17,8 @@ environment {
 		script {
 		
 		sh '''
-		      cd /var/lib/jenkins/workspace/Maven-pipleine/my-app/
+		      
+		      cd /var/lib/jenkins/workspace/Terraform/my-app
               mvn package 
 			'''
 		}
