@@ -13,10 +13,6 @@ resource "aws_instance" "weekend" {
   }
 }
 
-resource "aws_key_pair" "weekend7pm" {
-  key_name   = "weekend"
-  public_key = "${file("key/weekend.pub")}"
-}
 
 resource "aws_instance" "weekend1" {
 
