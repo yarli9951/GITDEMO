@@ -2,14 +2,14 @@ pipeline {
     agent any
     tools {
        maven 'maven'
-       Terraform 'terraform'
+      
     
     }
 
 
-//environment { 
-  //      PATH = "${PATH}:${getterraform()}"
-   // }
+ environment { 
+        PATH = "${PATH}:${getterraform()}"
+    }
 
   stages {
 	stage ('checkout')
