@@ -49,7 +49,7 @@ stage ('Terraform')
 	{
 	script 
 	{
-		sh 'cd /var/lib/jenkins/workspace/Terraform/;terraform init ; terraform apply --auto-approve'
+		sh 'cd /var/lib/jenkins/workspace/Terraform/;terraform destroy --auto-approve'
 	}
 	
 }
