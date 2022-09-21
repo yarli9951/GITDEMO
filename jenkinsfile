@@ -1,66 +1,55 @@
 pipeline {
-    agent any
-    tools {
-       maven 'maven'
-      
     
-    }
+    triggers{ cron('H/1 * * * *') }
+    agent any
+     parameters { string(name: 'Version' ,  defaultValue: 'staging',  description: 'To pass App Version') }
+       environment { 
+                     value = 'sample'
+      }
+    options {
 
-
- environment { 
-        PATH = "${PATH}:${getterraform()}"
-    }
-
-  stages {
-	stage ('checkout')
- 	{
-		steps {
-                checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/yarli9951/GITDEMO.git']]])
+        buildDiscarder(logRotator(numToKeepStr: '3'))
+    }   
+    
+    stages{
+        stage('checkout'){
+            steps{
+                script{
+                    //git 'https://github.com/yarli9951/session-830.git'
+                    git 'https://github.com/yarli9951/GITDEMO.git'
+                    echo "this a $value"
+                    echo "this is version $Version"
+                }
+                script{
+                    echo "this is second script"
+                }
             }
-	}
-	stage ('build')
-	{
-		steps {
-		script {
-		
-		sh '''
-		      
-		      cd /var/lib/jenkins/workspace/Terraform/my-app
-              mvn package 
-			'''
-		}
-		}
-	}
-	stage ('Non-regression')
-	{
-		steps {
-		echo 'This is build stage'
-		}
-	}
-         stage ('deploy')
-	{
-		steps {
-		echo 'This is build stage'
-		}
-	}
-stage ('Terraform')
-{
-	steps
-	{
-	script 
-	{
-		sh 'cd /var/lib/jenkins/workspace/Terraform/;terraform destroy --auto-approve'
-	}
-	
-}
-}
 
+
+        }
+       stage('Build'){
+          steps{
+	  script{
+            bat 'mvn clean'
+		 
+	  }
+		}
+	}
+    stage('Non-regression'){
+	 steps{
+		script{
+		        bat 'mvn test'
+		  }
+		}
     }
+    stage('package'){
+	  steps{
+		    script{
+		        bat 'mvn package'
+		    }
+		}
+	}
+ }
 }
 
 
-def getterraform(){
-
-   def getpath=tool name: 'Terraform', type: 'terraform'
-   return getpath
-}
