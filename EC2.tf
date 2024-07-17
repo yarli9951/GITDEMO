@@ -4,6 +4,7 @@ resource "aws_instance" "weekend" {
   ami           = "ami-0747bdcabd34c712a"
   instance_type = "t2.micro"
   subnet_id = "${aws_subnet.public.id}"
+  #this is a testing for github push event
 
 
   tags = {
