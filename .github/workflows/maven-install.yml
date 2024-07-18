@@ -1,4 +1,4 @@
-name: mavenbuild
+name: maveninstall
 on: workflow_dispatch
 jobs:
  
