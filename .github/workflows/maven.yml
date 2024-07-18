@@ -1,7 +1,6 @@
 name: mavenbuild
 on: workflow_dispatch
 jobs:
- 
   build:
     runs-on: ubuntu-latest
     steps:
@@ -15,11 +14,11 @@ jobs:
      - name: Build with maven
        run: | 
             mvn -B package --file pom.xml
+
+
   job2:
-     name: maveninstall
-     needs: mavenbuild
-     runs-on: ubuntu-latest
-     steps:
+    runs-on: ubuntu-latest
+    steps:
      - uses: actions/checkout@v4
      - name: Set up JDK 17
        uses: actions/setup-java@v3
@@ -29,7 +28,6 @@ jobs:
         cache: maven
      - name: Build with maven
        run: | 
-            mvn -B package --file pom.xml
-            ls -lrt
+            mvn -B install --file pom.xml
 
   
