@@ -24,7 +24,10 @@ jobs:
              target
              Windows-1.0-SNAPSHOT.jar
      - name: list
-       run: ls -lrt
+       run: | 
+           ls -lrt
+           echo "${{ steps.java.java-version }}"
+       
       
 
 
