@@ -16,7 +16,7 @@ jobs:
             mvn -B package --file pom.xml
 
 
-  job2:
+  deploy:
     needs: build
     runs-on: ubuntu-latest
     steps:
