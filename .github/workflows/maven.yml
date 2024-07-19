@@ -24,9 +24,8 @@ jobs:
              target
              Windows-1.0-SNAPSHOT.jar
      - name: list
-       run: | 
-           ls -lrt
-           echo "${{ steps.java.java-version }}"
+       run: |
+           echo "${{ steps.java.with.java-version }}"
        
       
 
