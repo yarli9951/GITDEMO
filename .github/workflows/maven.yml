@@ -14,6 +14,13 @@ jobs:
      - name: Build with maven
        run: | 
             mvn -B package --file pom.xml
+     - name: upload jar
+       uses: actions/upload-artifact@v3
+       with:
+         name: jarfile
+         path: |
+             target
+             Windows-1.0-SNAPSHOT.jar
 
 
   deploy:
